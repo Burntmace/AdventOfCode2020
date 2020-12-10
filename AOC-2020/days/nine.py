@@ -14,4 +14,4 @@ def main(filepath):
     for i in range(len(rows)):
         for j in range(i,len(rows)):
             if sum(rows[i:j]) == b_target and not len(rows[i:j])==1:
-                print("Part a solution: "+ str(max(rows[i:j])+min(rows[i:j])))
+                print("Part b solution: "+ str(max(rows[i:j])+min(rows[i:j])))
