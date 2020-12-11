@@ -14,6 +14,9 @@ def main(filepath):
                 current_volts = rows[i]
                 one_volts += 1
                 continue
+            if rows[i] - current_volts == 2:
+                current_volts = rows[i]
+                continue
             if rows[i] - current_volts == 3:
                 current_volts = rows[i]
                 three_volts += 1
@@ -24,4 +27,4 @@ def main(filepath):
         memo[rows[0]] = 1
         for i in range(1,len(rows)):
             memo[rows[i]] = memo.get(rows[i] + 1, 0) + memo.get(rows[i] + 2, 0) + memo.get(rows[i] + 3, 0)
-        print("Part a solution: "+ str(memo[0]))
+        print("Part b solution: "+ str(memo[0]))
