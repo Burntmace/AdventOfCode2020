@@ -22,16 +22,13 @@ def main(filepath):
         if rows[i][0] in directions:
             current_position += magnitude*directions[rows[i][0]]
             waypoint += magnitude*directions[rows[i][0]]
-        elif rows[i][0] == "L":
-            current_direction = (current_direction - magnitude) % 360
-            for n in range(int(magnitude/90)):
-                waypoint = complex(-waypoint.imag, waypoint.real)
-        elif rows[i][0] == "R":
+        elif rows[i][0] in "LR":
+            if rows[i][0] == "L":
+                magnitude = -magnitude
             current_direction = (current_direction + magnitude) % 360
-            for n in range(int(magnitude/90)):
-                waypoint = complex(waypoint.imag, -waypoint.real)
+            waypoint = waypoint*pow(1j,-magnitude/90)
         elif rows[i][0] == "F":
             current_position += magnitude*directions[turning[current_direction]]
             waypoint_position += magnitude*waypoint
-    print("Part a solution: "+str(int(abs(current_position.real)+abs(current_position.imag))))
-    print("Part b solution: "+str(int(abs(waypoint_position.real)+abs(waypoint_position.imag))))
+    print("Part a solution: "+str(abs(current_position.real)+abs(current_position.imag)))
+    print("Part b solution: "+str(abs(waypoint_position.real)+abs(waypoint_position.imag)))
